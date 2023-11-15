@@ -1,0 +1,45 @@
+<div class="container center ">
+    <div class="d-flex justify-content">
+        <div class="col-12 col-lg-5">
+            <main class="forms-signin">
+                <form [formGroup]="loginForm" (ngSubmit)="login()" autocomplete="off">
+                    <div >
+                        <div class="text-center mb-4">
+                            <h3 class="mb-3 font-weight-normal">
+                                Login
+                            </h3>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input formControlName="email" type="text" placeholder="email(Email Address)" class="form-control"
+                            [class.is-invalid]="submitted && loginForm.get('email')?.errors">
+                            <label for="email">Email</label>
+                            <span class="text-danger" *ngIf="submitted && loginForm.get('email')?.hasError('required')">
+                                Email is required
+                            </span>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input  formControlName="password" type="Password" placeholder="Password" class="form-control"
+                            [class.is-invalid]="submitted && loginForm.get('password')?.errors">
+                            <label for="password">Password</label>
+                            <span class="text-danger" *ngIf="submitted && loginForm.get('password')?.hasError('required')">
+                                Password is required
+                            </span>
+                        </div>
+                        <div class="form-floatin" *ngIf="errorMessages.length > 0">
+                            <app-validation-messages [errorMessages]="errorMessages"></app-validation-messages>
+                        </div>
+                        <div class="d-grid mt-4 x-1">
+                           <button class="btn btn-lg btn-info" type="submit">Log In</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="mt-4 text-center">
+                    <a href="" class="btn btn-link">
+                        <h6>Forgot User Name or Password</h6>
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+</div>

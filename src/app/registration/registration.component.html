@@ -1,0 +1,109 @@
+  <!-- <nav class="navbar  text-center">
+        
+       <a class="btn btn-primary" [routerLink]="['/Library/User/AddUser']">Add User</a>
+     
+     </nav> -->
+<div class="container">
+  
+     <div class="text-center mb-4">
+        <h3 class="mb-3 font-weight-normal">
+           USER REGISTRATION
+        </h3>
+    </div>
+   
+   <form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
+     <div class="form-row" >
+       <div class="input-data">
+          <input formControlName="fullName" type="text" id="userName" name="userName" class="form-control" 
+          [class.is-invalid]="submitted && registerForm.get('fullName')?.errors"  >
+          <div class="underline"></div>
+          <label for="fullName">Full Name</label>
+          <span class="text-danger" *ngIf="submitted && registerForm.get('fullName')?.hasError('required')">
+            Full Name Is required .
+          </span>
+          <span class="text-danger" *ngIf="submitted && registerForm.get('fullName')?.hasError('minlength') ||
+             registerForm.get('fullName')?.hasError('maxlength')">
+             Full Name Must Be Atleast 3 And Maximum Of 100 Characters
+          </span>
+       </div>
+       <div class="input-data">
+          <input formControlName="email" type="email" id="email" name="email" class="form-control" 
+          [class.is-invalid]="submitted && registerForm.get('email')?.errors"  required >
+          <div class="underline"></div>
+          <label for="">Email</label>
+          <span class="text-danger" *ngIf="submitted && registerForm.get('email')?.hasError('required')">
+            Email is required
+         </span>
+         <span class="text-danger" *ngIf="submitted && registerForm.get('email')?.hasError('pattern') ">
+         Invalid Email address
+      </span>
+       </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-2 pass">
+          <div class="input-data">
+              <input type="password" id="password" name="password" formControlName="password"  class="form-control"
+              [class.is-invalid]="submitted && registerForm.get('password')?.errors" required>
+              <div class="underline"></div>
+              <label for="password">Password</label>
+              <span class="text-danger" *ngIf="submitted && registerForm.get('password')?.hasError('required')">
+               Password is Required
+            </span>
+          </div>
+      </div>
+      <div class="col-md-6 mb-2 package">
+         <div class="form-group">
+             <label for="packageLabel  ">Package</label>
+             <div class="input-group">
+                 <select class="form-select" formControlName="registrationPackageId" id="registrationPackage" name="registrationPackage" class="form-control"
+                 [class.is-invalid]="submitted && registerForm.get('registrationPackageId')?.errors">
+                     <option class="selectPackage" value="">Select Package</option>
+                     <option *ngFor="let pkg of package" [value]="pkg.registrationPackageId">{{ pkg.membershipPackage }}</option>
+                 </select>
+                 <span class="text-danger" *ngIf="submitted && registerForm.get('registrationPackageId')?.hasError('required')">
+                  Select your package
+               </span>
+                 <div class="underline"></div>
+             </div>
+         </div>
+     </div>
+     
+     
+     
+  </div>
+    <div class="form-row">
+      <div class="input-data">
+         <input formControlName="registrationDate" type="date" id="registrationDate" name="registrationDate"  class="form-control" 
+         [class.is-invalid]="submitted && registerForm.get('registrationDate')?.errors"required>
+         <label for="">Registration Date</label>
+         <span class="text-danger" *ngIf="submitted && registerForm.get('registrationDate')?.hasError('required')">
+           Select a valid Date 
+         </span>
+         <div class="underline"></div>
+      </div>
+      <div class="input-data">
+         <input formControlName="expirationDate" type="date" id="expirationDate" name="expirationDate"  class="form-control" required>
+         <label for="">Expiration Date</label>
+         <div class="underline"></div>
+      </div>
+      
+       
+   </div>
+   <div class="form-floatin" *ngIf="errorMessages.length > 0">
+      <app-validation-messages [errorMessages]="errorMessages"></app-validation-messages>
+  </div>
+
+    
+    <div class="center-button">
+        <div class="d-grid gap-2">
+            <button class="btn btn-lg btn-primary" type="submit">Create User</button>
+          </div>
+    </div>
+       
+       
+     
+   </form>
+   
+   </div>
+ 
+ 

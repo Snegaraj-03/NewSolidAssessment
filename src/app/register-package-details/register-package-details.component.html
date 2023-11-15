@@ -1,0 +1,39 @@
+<!-- As a link -->
+<nav class="navbar  text-center">
+  <a class="navbar-brand" >Subscription </a>
+  <!-- <a class="btn btn-primary" [routerLink]="['/Library/Packages/addPackages']">Add Package</a> -->
+</nav>
+
+
+
+<div class="container mt-4 shadow">
+  <ng-container *ngIf=" package$|async as package">
+    <table class="table align-middle mb-0 table-bordered table-striped">
+      <thead class="bg-light">
+        <tr>
+          <th>Sno</th>
+          <th>Package Id</th>
+          <th>Package</th>
+          <th>Total Days</th>
+          <th>Subscription</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let pack of package ;let i=index">
+          <tr>
+            <td>{{i+1}}</td>
+          <td>{{pack.registrationPackageId}}</td>  
+          <td>{{pack.membershipPackage}}</td>
+          <td>{{pack.membershipPackageDays}}</td>
+          <td><span>{{pack.packageAmount| currency:'INR'}}</span>
+                
+          </td>
+          <td> 
+            <!-- <i class="bi1 bi-journal-text"[routerLink]="['/Library/PackageDetail',pack.registrationPackageId]"></i></td> -->
+          </tr>
+         
+      </tbody>
+    </table>
+  
+  </ng-container>
+</div>
