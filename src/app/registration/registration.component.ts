@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
 import { SharedService } from '../shared/shared.service';
+import { take } from 'rxjs';
+import { User } from '../model/AccountModel/login-response.model';
 
 
 @Component({
@@ -21,7 +23,13 @@ export class RegistrationComponent implements OnInit{
   
   constructor(private accountService:AccountService,private formBuilder:FormBuilder,private http:HttpClient,
     private router:Router,private sharedService:SharedService){
-
+      this.accountService.user$.pipe(take(1)).subscribe({
+        next:(user:User|null)=>{
+          if(user){
+            this.router.navigateByUrl('/');
+          }
+        }
+      })
      
   }
   ngOnInit(): void {
